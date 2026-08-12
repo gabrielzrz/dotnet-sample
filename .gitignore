@@ -1,0 +1,36 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+out/
+
+# .NET
+project.lock.json
+project.fragment.lock.json
+artifacts/
+*.user
+*.suo
+*.userprefs
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# Visual Studio
+.vs/
+
+# User-specific files
+*.rsuser
+*.userosscache
+*.sln.docstates
+
+# ASP.NET
+appsettings.*.local.json
+
+# OS files
+.DS_Store
+Thumbs.db
