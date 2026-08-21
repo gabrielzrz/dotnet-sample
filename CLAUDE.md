@@ -25,3 +25,6 @@ the situation:
 - **Never commit code automatically.** Do not run `git commit` (or push)
   on your own. Leave committing to the user unless explicitly asked to
   commit in a specific request.
+- **When explaining a programming concept, reference the Java/Spring
+  equivalent.** Draw a comparison to how it works in Java with Spring to
+  help ground the explanation.

@@ -1,3 +1,6 @@
+using dotnet_sample.Controllers;
+using dotnet_sample.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
+builder.Services.AddTransient<IPedidoService, PedidoService>();
+
+// builder.Services.AddSingleton<IPedidoService, PedidoService>();
+// builder.Services.AddTransient<IPedidoService, PedidoService>();
 
 var app = builder.Build();
 
@@ -19,5 +28,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapPedidoEndpoints();
 
-app.Run();
+await app.RunAsync();
