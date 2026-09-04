@@ -1,5 +1,9 @@
+using dotnet_sample;
 using dotnet_sample.Controllers;
+using dotnet_sample.Data;
 using dotnet_sample.Services;
+using dotnet_sample.Workers;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,10 +14,14 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
-builder.Services.AddTransient<IPedidoService, PedidoService>();
+builder.Services.AddScoped<IPedidoService, PedidoService>();
+builder.Services.AddScoped<INotificadorService, NotificadorService>();
 
-// builder.Services.AddSingleton<IPedidoService, PedidoService>();
-// builder.Services.AddTransient<IPedidoService, PedidoService>();
+builder.Services.AddDbContextFactory<AppDbContext>();
+
+// AddHostedService registra o worker como Singleton e o inicia junto com a app.
+builder.Services.AddHostedService<PedidoAltoValorWorker>();
+builder.Services.AddHostedService<HorariosFixosWorker>();
 
 var app = builder.Build();
 
